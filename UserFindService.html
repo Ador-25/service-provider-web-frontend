@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="locationGet(event)">
+        Update location
+    </button>
+    <select id="ddlViewBy">
+        <option value="1">Electrician</option>
+        <option value="2" selected="selected">Technician</option>
+        <option value="3">Plumber</option>
+      </select>
+      <button style=" background: rgb(74, 212, 212); " onclick="search(event)">Search</button>
+    <script>
+        let u=''
+        var x=''
+        function locationGet(event){
+            event.preventDefault()
+            var url=''
+            var e = document.getElementById("ddlViewBy");
+var value = e.value;
+var text = e.options[e.selectedIndex].text;
+            navigator.geolocation.getCurrentPosition((position) => {
+    let lat = position.coords.latitude;
+    let long = position.coords.longitude;
+    url='http://localhost:5105/Serviceproviders/'+text+'/'+lat+'/'+long
+    x=url
+    u=url
+    console.log(url)
+    //const res =  axios.get(url);
+    //console.log(res)
+
+  });
+        }
+        async function search(event){
+            try {
+                const res= await axios.get(u)
+                console.log(res.data)
+            } catch (error) {
+                
+            }
+        }
+    </script>
+      
+    
+</body>
+</html>

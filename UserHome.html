@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div class="btn-group" style="width:100%">
+        <button style="width:48% ;height:80px; background: aqua;">Find Service</button>
+        <button style="width:50%;height:80px;background: cadetblue;">Past Services</button>
+      </div>
+    
+      <script>
+         const res = axios.get(' http://localhost:5105/users/'+localStorage.getItem("user"));         
+        console.log(localStorage.getItem("user"))
+            
+    </script>
+</body>
+</html>

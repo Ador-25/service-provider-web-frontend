@@ -14,6 +14,7 @@
     padding: 0 10px;
     margin: 10px;
 
+
   }
   
   /* Remove extra left and right margins, due to padding in columns */
@@ -35,7 +36,6 @@
     height: 100px;
     text-shadow: turquoise;
     border-radius: 10px;
-    cursor: grab;
 
   }
   
@@ -83,7 +83,6 @@
     text-align: center;
     color: #fff;
     border-radius: 0 5px 5px 0;
-    cursor: pointer;
     font-size: 20px;
   }
   

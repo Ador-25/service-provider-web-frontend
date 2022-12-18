@@ -23,8 +23,8 @@
                 <input type="email" class="input-box" placeholder="Email" id="email" style="border-width: 3px; height: 26px;">
                 <input type="firstname" class="input-box" placeholder="Firstname" id="firstname"  style="border-width: 3px;height: 26px;">
                 <input type="lastname" class="input-box" placeholder="Lastname" id="lastname"  style="border-width: 3px;height: 26px;">
-                <input type="phone" class="input-box" placeholder="Phone" id="phone"  style="border-width: 3px;height: 26px;">
-                <input type="address" class="input-box" placeholder="Address" id="address"  style="border-width: 3px;height: 26px;">
+    
+                <input type="address" class="input-box" placeholder="Your Address" id="address"  style="border-width: 3px;height: 26px;">
                 <input type="nid" class="input-box" placeholder="NID Number" id="nid"  style="border-width: 3px;height: 26px;">
                 <input type="phone" class="input-box" placeholder="Phone Number" id="phone"  style="border-width: 3px;height: 26px;">
                 <input type="password" class="input-box" placeholder="Password" id="password"  style="border-width: 3px;height: 26px;">
@@ -108,14 +108,14 @@
                 }
                 async function successFunction(position){
                     //event.preventDefault()
-                    var lat = position.coords.latitude;
-    var long = position.coords.longitude;
-    console.log('Your latitude is :'+lat+' and longitude is '+long);
+                    var latt = position.coords.latitude;
+                    var longg = position.coords.longitude;
+    
                     const firstname=document.getElementById('firstname')
                     const email=document.getElementById('email')
                     const lastname=document.getElementById('lastname')
                     const password=document.getElementById('password')
-                    const phone=document.getElementById('phone')
+                    const phoneNumber=document.getElementById('phone')
                     const address=document.getElementById('address')
                     const nid=document.getElementById('nid')
                     var s = document.getElementById("services");
@@ -128,16 +128,33 @@
                         email:email.value,
                         lastname:lastname.value, 
                         password: password.value,
-                        phone:phone.value ,
+                        phoneNumber:phone.value ,
                         address: address.value,
                         nid: nid.value,
-                        typeofservice: type
+                        typeofservice: type,
+                        Lat:latt.value,
+                        Lon:longg.value
 
                     });
-                    console.log(res.data);
+
+                    
+                    
+                    
+                
 
                     if (res.data.status === 'Success') {
-                        location.href = 'ServiceProviderLogin.html';
+                    console.log(res.data);
+                    console.log(firstname.value)
+                    console.log(email.value)
+                    console.log(password.value)
+                    console.log(lastname.value)
+                    console.log(phoneNumber.value)
+                    console.log(address.value)
+                    console.log(nid.value)
+                    console.log(s.value)
+                    console.log(latt)
+                    console.log(longg)
+                    location.href = 'ServiceProviderLogin.html';
                     }
                     else{
                         alert(

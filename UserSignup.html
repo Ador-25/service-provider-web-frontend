@@ -27,9 +27,6 @@
                 <input type="password" class="input-box" placeholder="Password" id="password"  style="border-width: 3px;height: 26px;">
                 <p><span><input type="checkbox"></span> agree to the terms and policy</p>
                 <button type="submit" class="signup-btn">Sign up</button>
-                <hr>
-                <p class="or">OR</p>
-                <button type="button" class="google-btn">Log in with Google</button>
 
            
             </form>
@@ -39,28 +36,35 @@
                 async function signupUser(event){
                     event.preventDefault()
                     const firstname=document.getElementById('firstname')
-                    const lastname=document.getElementById('lastname')
                     const email=document.getElementById('email')
+                    const lastname=document.getElementById('lastname')
                     const password=document.getElementById('password')
-                    const phn=document.getElementById('phone')
+                    const phone=document.getElementById('phone')
 
-    
                     try {
-                    const res = await axios.post('http://localhost:5105/Add_user',
-                     { firstname: firstname.value,
-                        lastname:lastname.value,
-                        phoneNumber:phn.value, 
+                    const res = await axios.post('http://localhost:5105/signup-user',
+                     { 
+                        firstname: firstname.value,
                         email:email.value,
+                        lastname:lastname.value, 
                         password: password.value,
-                        });
+                        phone:phone.value });
                     console.log(res.data);
-                    location.href = 'UserLogin.html';
+
+                    if (res.data.status === 'Success') {
+                        location.href = 'UserLogin.html';
+                    }
+                    else{
+                        alert(
+                            'Please Fill in the info properly'
+                        )
+                    }
 
                     } catch (err) {
                         console.log(err); 
                     } 
                 } 
-    
+
                 form.addEventListener('submit', signupUser)
             </script>
             

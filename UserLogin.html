@@ -30,8 +30,9 @@
             </form>
         </div>
 
-        <script>
+        <script >
             const form = document.getElementById('login-form')
+
 
             async function loginUser(event){
                 event.preventDefault()
@@ -39,16 +40,24 @@
                 const password=document.getElementById('password')
 
                 try {
-                const res = await axios.post(' http://localhost:5105/login-user', { username: username.value, password: password.value });
-                console.log(res.data); 
+                const res = await axios.post('http://localhost:5105/signin', { username: username.value, password: password.value });
+                if(res.data.status ==""){
+                    alert(
+                        'Incorrect Username or Password'
+                        )
+                }
+                else{
+                    localStorage.setItem('token', res.data.token); 
+                    const token = localStorage.getItem('token'); 
+                    console.log({ tokenFromStorage: token }); 
+                    location.href = 'UserHome.html';
+                }
                 // For saving token to the local storage 
-                localStorage.setItem('token', res.data); 
-                localStorage.setItem('user', username.value); 
-                const token = localStorage.getItem('token'); 
-                console.log({ tokenFromStorage: token }); 
-                location.href = 'Userhome.html';
+                
                 } catch (err) {
-                    console.log(err); 
+                    alert(
+                        'Incorrect Username or Password'
+                        )
                 } 
             }
 

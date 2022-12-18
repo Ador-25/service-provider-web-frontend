@@ -4,84 +4,152 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <title>Sign Up Page</title>
     <link rel="stylesheet" href="SignupStyle.css">
+    <link rel="stylesheet" href="topnav.css">
     <link rel="stylesheet" type=text/css href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
 </head>
-<body>
-    <div class="sign-up-page">
+
+<body  background="/peshaback.jpg">
+    <div class="topnav">
+        <a class="active" href="http://127.0.0.1:5500/UserHome.html">Home</a>
+        <a href="http://127.0.0.1:5500/UserLogin.html">Login</a>
+        <a href="http://127.0.0.1:5500/UserSignup.html">Sign Up</a>
+        <a href="http://127.0.0.1:5500/Contact.html">Contact</a>
+        <a href="http://127.0.0.1:5500/About.html">About</a>
+      </div>
+    <div class="sign-up-page" >
         <h1><i class="fa fa-user-circle"></i>Sign up Here</h1>
             <form id="signup-form">
                 <input type="email" class="input-box" placeholder="Email" id="email" style="border-width: 3px; height: 26px;">
                 <input type="firstname" class="input-box" placeholder="Firstname" id="firstname"  style="border-width: 3px;height: 26px;">
                 <input type="lastname" class="input-box" placeholder="Lastname" id="lastname"  style="border-width: 3px;height: 26px;">
                 <input type="phone" class="input-box" placeholder="Phone" id="phone"  style="border-width: 3px;height: 26px;">
+                <input type="address" class="input-box" placeholder="Address" id="address"  style="border-width: 3px;height: 26px;">
+                <input type="nid" class="input-box" placeholder="NID Number" id="nid"  style="border-width: 3px;height: 26px;">
+                <input type="phone" class="input-box" placeholder="Phone Number" id="phone"  style="border-width: 3px;height: 26px;">
                 <input type="password" class="input-box" placeholder="Password" id="password"  style="border-width: 3px;height: 26px;">
-                <input type="nid" class="input-box" placeholder="nid" id="nid"  style="border-width: 3px;height: 26px;">
-                <button onclick="locationGet(event)">
-                    Update Location
-                </button>
-                <select id="ddlViewBy">
-                    <option value="1">Electrician</option>
-                    <option value="2" selected="selected">Technician</option>
-                    <option value="3">Plumber</option>
-                  </select>
-                <p><span><input type="checkbox"></span> agree to the terms and policy</p>
+                
+
+
+                <label for="cars">Service I Offer:</label>
+
+                <select name="services" id="services">
+                  <option value="0">Electrician</option>
+                  <option value="1">Technician</option>
+                  <option value="2">Plumber</option>
+                  <option value="3">Delivery Man</option>
+                  <option value="4">Driver</option>
+                  <option value="5">Carpenter</option>
+                  <option value="6">Mechanic</option>
+            
+                </select> 
+
                 <button type="submit" class="signup-btn">Sign up</button>
-                <hr>
-                <p class="or">OR</p>
-                <button type="button" class="google-btn">Log in with Google</button>
 
            
             </form>
             <script>
                 const form = document.getElementById('signup-form')
-                let u=''
-                let x=''
-        function locationGet(event){
-            event.preventDefault()
-            var url=''
-            navigator.geolocation.getCurrentPosition((position) => {
-    let lat = position.coords.latitude;
-    let long = position.coords.longitude;
-    //url='http://localhost:5105/Serviceproviders/'+text+'/'+lat+'/'+long
-    x=long
-    u=lat
-    console.log(url)
-    //const res =  axios.get(url);
-    //console.log(res)
-
-  });
-        }
+    
                 async function signupUser(event){
                     event.preventDefault()
+                    if (navigator.geolocation) {
+                         navigator.geolocation.getCurrentPosition(successFunction, errorFunction);
+                    } else {
+                         alert('It seems like Geolocation, which is required for this page, is not enabled in your browser. Please use a browser which supports it.');
+                    }
+                    // event.preventDefault()
+                    // const firstname=document.getElementById('firstname')
+                    // const email=document.getElementById('email')
+                    // const lastname=document.getElementById('lastname')
+                    // const password=document.getElementById('password')
+                    // const phone=document.getElementById('phone')
+                    // const address=document.getElementById('address')
+                    // const nid=document.getElementById('nid')
+                    // //recheck here 
+                    // var s = document.getElementById("services");
+                    // var type = s.value;
+                    
+
+
+                    // console.log(type)
+                    // console.log(position.coords.latitude)
+                    
+                    // try {
+                    // const res = await axios.post('http://localhost:5105/signup-sp',
+                    //  { 
+                    //     firstname: firstname.value,
+                    //     email:email.value,
+                    //     lastname:lastname.value, 
+                    //     password: password.value,
+                    //     phone:phone.value ,
+                    //     address: address.value,
+                    //     nid: nid.value,
+                    //     typeofservice: type
+
+                    // });
+                    // console.log(res.data);
+
+                    // if (res.data.status === 'Success') {
+                    //     location.href = 'ServiceProviderLogin.html';
+                    // }
+                    // else{
+                    //     alert(
+                    //         'Please Fill in the info properly'
+                    //     )
+                    // }
+
+                    // } catch (err) {
+                    //     console.log(err); 
+                    // } 
+                } 
+                async function  errorFunction(event){
+                    alert('cant get location')
+                }
+                async function successFunction(position){
+                    //event.preventDefault()
+                    var lat = position.coords.latitude;
+    var long = position.coords.longitude;
+    console.log('Your latitude is :'+lat+' and longitude is '+long);
                     const firstname=document.getElementById('firstname')
-                    const lastname=document.getElementById('lastname')
                     const email=document.getElementById('email')
+                    const lastname=document.getElementById('lastname')
                     const password=document.getElementById('password')
-                    const phn=document.getElementById('phone')
+                    const phone=document.getElementById('phone')
+                    const address=document.getElementById('address')
                     const nid=document.getElementById('nid')
-                    var e = document.getElementById("ddlViewBy");
-var value = e.value;
-var text = e.options[e.selectedIndex].text;
+                    var s = document.getElementById("services");
+                    var type = s.value;
+                            
                     try {
-                    const res = await axios.post('http://localhost:5105/Add_ServiceProvider',
-                     { firstname: firstname.value,
-                        lastname:lastname.value,
-                        phoneNumber:phn.value, 
+                    const res = await axios.post('http://localhost:5105/signup-sp',
+                     { 
+                        firstname: firstname.value,
                         email:email.value,
+                        lastname:lastname.value, 
                         password: password.value,
-                        nid:nid.value,
-                        long:x,
-                        lat:u,
-                        ServiceType:value
-                        });
+                        phone:phone.value ,
+                        address: address.value,
+                        nid: nid.value,
+                        typeofservice: type
+
+                    });
                     console.log(res.data);
-                    location.href = 'UserLogin.html';
+
+                    if (res.data.status === 'Success') {
+                        location.href = 'ServiceProviderLogin.html';
+                    }
+                    else{
+                        alert(
+                            'Please Fill in the info properly'
+                        )
+                    }
 
                     } catch (err) {
                         console.log(err); 
                     } 
-                } 
-    
+                }
+
                 form.addEventListener('submit', signupUser)
             </script>
             

@@ -25,10 +25,8 @@
                 <input type="lastname" class="input-box" placeholder="Lastname" id="lastname"  style="border-width: 3px;height: 26px;">
                 <input type="phone" class="input-box" placeholder="Phone" id="phone"  style="border-width: 3px;height: 26px;">
                 <input type="password" class="input-box" placeholder="Password" id="password"  style="border-width: 3px;height: 26px;">
-                <p><span><input type="checkbox"></span> agree to the terms and policy</p>
                 <button type="submit" class="signup-btn">Sign up</button>
 
-           
             </form>
             <script>
                 const form = document.getElementById('signup-form')
@@ -40,18 +38,26 @@
                     const lastname=document.getElementById('lastname')
                     const password=document.getElementById('password')
                     const phone=document.getElementById('phone')
+                    console.log(firstname.value)
+                    console.log(lastname.value)
+                    console.log(email.value)
+                    console.log(password.value)
+                    console.log(phone.value)
+
 
                     try {
                     const res = await axios.post('http://localhost:5105/signup-user',
                      { 
                         firstname: firstname.value,
-                        email:email.value,
                         lastname:lastname.value, 
+                        email:email.value,
                         password: password.value,
-                        phone:phone.value });
+                        PhoneNumber:phone.value
+                     });
+
                     console.log(res.data);
 
-                    if (res.data.status === 'Success') {
+                    if (res.data.status === 'Success' && res.data.message!=='Failed') {
                         location.href = 'UserLogin.html';
                     }
                     else{

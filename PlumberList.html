@@ -11,7 +11,7 @@
 </head>
 <body >
     <div class="topnav">
-        <a class="active" href="#home">Home</a>
+        <a class="active" href="UserHome.html">Home</a>
         <a href="http://127.0.0.1:5500/rootLogin.html">Login</a>
         <a href="http://127.0.0.1:5500/rootSignup.html">Sign Up</a>
         <a href="http://127.0.0.1:5500/Services.html">Requests</a>
@@ -30,7 +30,7 @@
      <h2 style="padding-left: 7%;
      padding-top: 3%;
      ">
-        Electricians:
+        Plumbers:
 
      </h2>
 
@@ -67,7 +67,7 @@
           //console.log(mylist);
           for(let i = 0; i < res.data.length; i++) {
                let obj = res.data[i];
-               if(obj.serviceType==0){
+               if(obj.serviceType==2){
                 mylist.push(obj)
                }
 }
@@ -86,9 +86,10 @@ console.log(mylist.length)
                     parsed += '<i">'+"id: " + myobj['serviceProviderID']+'</i>'; 
                     parsed+='</br>'
                     parsed +='<i>'                          
-                    parsed +="Electrician(Base charge:200tk)      "                        
+                    parsed +="Plumber(Base charge:200tk)    "                        
                     parsed +='</i>'
                     parsed+='</br>'
+
                     var idd=myobj['serviceProviderID']
                     parsed +='</br><a  href="serviceProviderProfile.html?id='
                     parsed+=idd

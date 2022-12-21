@@ -17,7 +17,6 @@
         <a href="http://127.0.0.1:5500/Services.html">Requests</a>
         <a href="http://127.0.0.1:5500/Contact.html">Contact</a>
         <a href="http://127.0.0.1:5500/About.html">About</a>
-        <a href="http://127.0.0.1:5500/rootLogin.html">Logout</a>
       </div>
       <div class="wrap">
         <div class="search">
@@ -30,7 +29,7 @@
      <h2 style="padding-left: 7%;
      padding-top: 3%;
      ">
-        Electricians:
+        Technicians:
 
      </h2>
 
@@ -67,7 +66,7 @@
           //console.log(mylist);
           for(let i = 0; i < res.data.length; i++) {
                let obj = res.data[i];
-               if(obj.serviceType==0){
+               if(obj.serviceType==1){
                 mylist.push(obj)
                }
 }
@@ -86,7 +85,7 @@ console.log(mylist.length)
                     parsed += '<i">'+"id: " + myobj['serviceProviderID']+'</i>'; 
                     parsed+='</br>'
                     parsed +='<i>'                          
-                    parsed +="Electrician(Base charge:200tk)      "                        
+                    parsed +="Technician(Base charge:200tk)      "                        
                     parsed +='</i>'
                     parsed+='</br>'
                     var idd=myobj['serviceProviderID']

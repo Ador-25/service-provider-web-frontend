@@ -11,9 +11,8 @@
 
 <body  background="/peshaback.jpg">
     <div class="topnav">
-        <a class="active" href="http://127.0.0.1:5500/UserHome.html">Home</a>
-        <a href="http://127.0.0.1:5500/UserLogin.html">Login</a>
-        <a href="http://127.0.0.1:5500/UserSignup.html">Sign Up</a>
+        <a href="http://127.0.0.1:5500/rootLogin.html">Login</a>
+        <a href="http://127.0.0.1:5500/rootSignup.html">Sign Up</a>
         <a href="http://127.0.0.1:5500/Contact.html">Contact</a>
         <a href="http://127.0.0.1:5500/About.html">About</a>
       </div>
@@ -119,7 +118,7 @@
                     const address=document.getElementById('address')
                     const nid=document.getElementById('nid')
                     var s = document.getElementById("services");
-                    var type = s.value;
+                    const type = s.value;
                             
                     try {
                     const res = await axios.post('http://localhost:5105/signup-sp',
@@ -128,12 +127,12 @@
                         email:email.value,
                         lastname:lastname.value, 
                         password: password.value,
-                        phoneNumber:phone.value ,
+                        phoneNumber:phoneNumber.value ,
                         address: address.value,
                         nid: nid.value,
-                        typeofservice: type,
-                        Lat:latt.value,
-                        Lon:longg.value
+                        typeofservice: type+'',
+                        Lat:latt+'',
+                        Lon:longg+''
 
                     });
 
@@ -151,9 +150,9 @@
                     console.log(phoneNumber.value)
                     console.log(address.value)
                     console.log(nid.value)
-                    console.log(s.value)
-                    console.log(latt)
-                    console.log(longg)
+                    console.log(s.value+'')
+                    console.log(latt.to+'')
+                    console.log(longg+'')
                     location.href = 'ServiceProviderLogin.html';
                     }
                     else{

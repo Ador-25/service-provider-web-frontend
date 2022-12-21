@@ -17,6 +17,7 @@
         <a href="http://127.0.0.1:5500/Services.html">Requests</a>
         <a href="http://127.0.0.1:5500/Contact.html">Contact</a>
         <a href="http://127.0.0.1:5500/About.html">About</a>
+        <a href="http://127.0.0.1:5500/rootLogin.html">Logout</a>
       </div>
       <div class="wrap">
         <div class="search">
@@ -30,19 +31,46 @@
 <h1 style="margin-left: 10%; margin-top: 4%;">
     Past Services:
 </h1>
+<div id ="cl">
+
+</div>
 </body>
 
 
     
       <script>
-         function openTab(tabName) {
-  var i, x;
-  x = document.getElementsByClassName("containerTab");
-  for (i = 0; i < x.length; i++) {
-    x[i].style.display = "none";
-  }
-  document.getElementById(tabName).style.display = "block";
-} 
+        window.onload = async function get(){
+          try {
+      const temp = window.location.href.split("=")[1];
+                const url= "http://localhost:5105/requests";
+                const res = await axios.get(url);
+                console.log(res.data)
+                var parser = ''
+                parser+='<div  style="width:500px; text-align: left;height:100px; margin-left:10%";>  '
+                for(var i=0;i<res.data.length;i++){
+                  var myobj=  res.data[i];
+                  parser+='<div style ="padding:4% ; background:#C0C0C0;  margin:3%">'
+                  parser+='ID: '+ myobj['serviceId']
+                  parser+='</br>'
+                  parser+= 'Location: '+ myobj['userAddress']
+                  parser+='</br>'
+                  parser+= 'Contact: '+ myobj['userPhoneNumber']
+                  parser+='</br>'
+                  parser +='<a  href=""'
+                    parser+='"><button >Call Now</button></a></br>'
+                  parser+='</div>'
+
+                }
+                parser+='</div>'
+                const cl = document.getElementById("cl");
+                 cl.innerHTML = parser;
+                
+                } catch (err) {
+                    alert(
+                      err
+                        )
+                } 
+        }
             
     </script>
 </body>
